@@ -17,4 +17,9 @@
               1. get orders     =   localhost:8081/api/v1/order/all
               
               
+              
+ # utility
+        create a .env copy from .env_sample
+              
+              
     
