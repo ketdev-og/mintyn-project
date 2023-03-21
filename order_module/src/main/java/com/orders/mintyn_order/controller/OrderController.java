@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 import static com.orders.mintyn_order.utils.constants.BASE_URL;
@@ -20,7 +21,7 @@ public class OrderController {
     OrderService orderService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<MintynOrder>> orders(@RequestParam String startDate, @RequestParam String endDate) {
+    public ResponseEntity<List<MintynOrder>> orders(@RequestParam Date startDate, @RequestParam Date endDate) {
         List<MintynOrder> orders = orderService.orders(startDate, endDate);
 
         return ResponseEntity.ok(orders);
