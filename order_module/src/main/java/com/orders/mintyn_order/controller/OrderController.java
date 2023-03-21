@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,8 +20,9 @@ public class OrderController {
     OrderService orderService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<MintynOrder>> orders() {
-        List<MintynOrder> orders = orderService.orders();
+    public ResponseEntity<List<MintynOrder>> orders(@RequestParam String startDate, @RequestParam String endDate) {
+        List<MintynOrder> orders = orderService.orders(startDate, endDate);
+
         return ResponseEntity.ok(orders);
     }
 }

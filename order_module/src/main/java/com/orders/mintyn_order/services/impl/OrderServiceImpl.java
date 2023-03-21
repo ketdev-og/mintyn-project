@@ -1,8 +1,6 @@
 package com.orders.mintyn_order.services.impl;
 
 
-
-
 import com.orders.mintyn_order.dto.MintynOrder;
 import com.orders.mintyn_order.dto.MintynProduct;
 import com.orders.mintyn_order.entities.order.OrderRequest;
@@ -10,12 +8,14 @@ import com.orders.mintyn_order.exception.BadRequest;
 import com.orders.mintyn_order.repositories.OrderRepository;
 import com.orders.mintyn_order.repositories.ProductRepository;
 import com.orders.mintyn_order.services.OrderService;
+import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.client.HttpClientErrorException;
 
+
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -60,7 +60,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<MintynOrder> orders() {
-        return orderRepository.findAll();
+    public List<MintynOrder> orders(Date startDate, Date endDate) {
+        if (startDate != null && endDate != null)
+        {
+            return orderRepository.findByCreateDateBetween(startDate,endDate);
+        }
+            return orderRepository.findAll();
     }
 }

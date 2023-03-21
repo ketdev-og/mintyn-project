@@ -9,6 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProductRepository extends JpaRepository<MintynProduct, Long> {
-    boolean existsMintynProductByProductId(String productId);
     MintynProduct findMintynProductByProductId(String productId);
 }

@@ -6,8 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.lang.NonNull;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -37,5 +40,11 @@ public class MintynOrder {
 
     @ManyToMany(cascade =  CascadeType.ALL)
     private Set<MintynProduct> products;
+
+    @CreationTimestamp
+    private LocalDateTime createDate;
+
+    @UpdateTimestamp
+    private LocalDateTime updateDate;
 
 }
