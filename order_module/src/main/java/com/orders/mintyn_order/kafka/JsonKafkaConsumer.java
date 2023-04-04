@@ -28,7 +28,6 @@ public class JsonKafkaConsumer {
                     }
     )
     public OrderRequest consumer(OrderRequest message) {
-        System.err.println("here ooooooooooooo");
         MintynOrder order = orderService.createOrder(message);
         LOG.info(String.format("message from consumer json retrieves %s", message.toString()));
         LOG.info(String.format("sent to database %s", order.toString()));
